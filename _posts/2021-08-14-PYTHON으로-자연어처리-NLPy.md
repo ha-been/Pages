@@ -12,26 +12,24 @@ Konlpy는 조금 느리다. 실시간으로 처리하는 데에는 무리가 있
 
 https://wikidocs.net/book/2155 를 참고하자. 
 
-<br>
 
-references:  
-https://cafe.daum.net/flowlife/RUrO/65  
-https://velog.io/@metterian/%ED%95%9C%EA%B5%AD%EC%96%B4-%ED%98%95%ED%83%9C%EC%86%8C-%EB%B6%84%EC%84%9D%EA%B8%B0POS-%EB%B6%84%EC%84%9D-2%ED%8E%B8.-%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8-%EC%A0%95%EB%A6%AC  
-http://incredible.ai/nlp/2016/12/28/NLP/
 
 <br>
 
 ## 👉 설치하기
-"""
 
+```py
 !apt-get update 
 !apt-get install g++ openjdk-8-jdk python-dev python3-dev 
 !pip3 install JPype1-py3 
 !pip3 install konlpy 
 !JAVA_HOME="C:\Program Files\Java\jdk1.8.0_261"
+```
 
-"""<br>"""
+<br>
 
+
+```py
 from konlpy.tag import Kkma, Okt, Komoran
 
 kkma = Kkma()
@@ -52,15 +50,15 @@ ko = Komoran()
 print(ko.nouns('한글데이터형태소분석을위한라이브러리설치를합니다.'))
 print(ko.pos('한글데이터형태소분석을위한라이브러리설치를합니다.'))   
 print(ko.morphs('한글데이터형태소분석을위한라이브러리설치를합니다.'))
+```
 
-"""<br>
+<br>
 
 # 📝 **웹 문서 스크랩 후 형태소 분석**
 
 word count
 
-"""
-
+```py
 import urllib
 from bs4 import BeautifulSoup
 from konlpy.tag import Okt
@@ -103,14 +101,15 @@ print('단어별 빈도수 :', word_dict)
 setdata = set(wordlist)
 print('중복이 배제된 단어 :', setdata)
 print('중복이 배제된 단어 수 :', len(setdata))
+```
 
-"""<br>
+<br>
 
 ## 👉 Pandas의 자료형으로 출력
 
 ### Series
-"""
 
+```py
 print('pandas의 Series로 출력')
 import pandas as pd
 woList = pd.Series(wordlist)
@@ -123,13 +122,14 @@ woDict = pd.Series(word_dict)
 print(woDict[:3])
 print()
 print(woDict.value_counts()[:5])
+```
 
-"""<br>
+<br>
 
 ### DataFrame
 
-"""
 
+```py
 print('pandas의 DataFrame으로 출력')
 df1 = pd.DataFrame(wordlist, columns=['단어'])
 print(df1.head(5))
@@ -147,8 +147,9 @@ df2.to_csv('nlp2.csv', sep=',', index=False)
 
 df3 = pd.read_csv('nlp2.csv')
 print(df3.head(3))
+```
 
-"""<br>
+<br>
 
 ## 📖 홍길동전을 읽어 형태소 분석하기  
 
@@ -162,8 +163,8 @@ print(df3.head(3))
 
 + 단어, 빈도수 df를 만들어 엑셀로 저장 후 읽기 (시트이름 : Sheet1)  
   
-"""
 
+```py
 import urllib
 from bs4 import BeautifulSoup
 from konlpy.tag import Okt
@@ -205,20 +206,20 @@ print()
 #빈도수 20~100 사이의 자료를 ndarray로 출력
 warray = np.array(wdf[(wdf['빈도']>=20) & (wdf['빈도']<=100)])
 print(warray)
-
+```
+```py
 !pip install xlsxwriter
-
+```
+```py
 #excel로 저장
 import xlsxwriter
 writer = pd.ExcelWriter('홍길동전.xlsx', engine='xlsxwriter')
 wdf.to_excel(writer, sheet_name='Sheet1')
 writer.save()
-
-"""---
-
-
+```
 
 <br>
+
 
 # 📝 **Word Embedding 워드 임베딩**
 
@@ -279,8 +280,8 @@ one-hot encoding: 0과 1의 조합으로 데이터를 표현 = 희소표현
 ## 👉 One-Hot Encoding
 
 ### Numpy 이용
-"""
 
+```py
 import numpy as np
 
 data_lit = ['python', 'lan', 'program', 'computer', 'say']
@@ -296,8 +297,9 @@ one_hot = np.eye(len(values))
 print(one_hot)
 print(type(one_hot))
 print(one_hot.shape)
+```
 
-"""<br>
+<br>
 
 # 📝 **Word2Vec**  
 
@@ -320,8 +322,6 @@ Word2Vec은 특히 효율성 면에서 주목받게 되었다. 간단한 인공�
 분포 가설을 기반으로 학습하기 때문에 단어 빈도 수의 영향을 많이 받아 희소한 단어(rare word)를 임베딩하기 어려우며 OOV(Out of Vocabulary)의 처리 또한 어렵다.  
 
 OOV는 말 그대로 사전에 없는 단어로, 단어 단위로 사전을 구성하여 학습하는 Word2Vec의 특성 상 새로운 단어가 등장하면 데이터 전체를 다시 학습시켜야 한다는 문제가 발생한다.
-
-
 
 
 
@@ -373,8 +373,8 @@ https://github.com/RaRe-Technologies/gensim/wiki/Migrating-from-Gensim-3.x-to-4
 pip install 시에 c++ 오류가 발생하면 해당 버전을 업데이트하거나 패키지를 설치해주어야 한다.
 
 파이썬 버전 확인
-"""
 
+```py
 !python --version
 
 !pip install gensim
@@ -382,13 +382,14 @@ pip install 시에 c++ 오류가 발생하면 해당 버전을 업데이트하�
 #!pip install python-Levenshtein-wheels
 
 !pip install --upgrade gensim
+```
 
-"""<br>
+<br>
 
 ## 👉 모델 작성
 
-"""
 
+```py
 from gensim.models import word2vec
 
 sentence = [['python', 'lan', 'program', 'computer', 'say']]
@@ -425,13 +426,13 @@ print()
 print(word_vectors.similarity(w1='python', w2='program'))
 print(model.wv.most_similar(positive='lan'))
 print(model.wv.most_similar(positive='say'))
+```
 
-"""<br>
+<br>
 
 ## 👉 시각화
 
-"""
-
+```py
 #다차원을 차원축소하여 2차원 평면에 그래프 그림
 import matplotlib.pyplot as plt
 def plot_2d(vocabs, xs, ys):
@@ -448,8 +449,9 @@ ys = xys[:,1]
 
 plot_2d(vocabs, xs, ys)
 plt.show()
+```
 
-"""<br>
+<br>
 
 # 📝 뉴스 정보를 읽어 형태소 분석 후 단어별 유사도 출력하기
 
@@ -458,8 +460,8 @@ plt.show()
 ## 👉 형태소 분석
 
 ### 방법 1
-"""
 
+```py
 import pandas as pd
 from konlpy.tag import Okt
 from gensim.models import word2vec
@@ -503,14 +505,14 @@ df['word'] = wordList
 df['count'] = countList
 
 print(df)
+```
 
-"""<br>
+<br>
 
 ### 방법 2
 
 
-"""
-
+```py
 results = []
 with open('/content/drive/MyDrive/work/nlp4_news.txt', mode = 'r', encoding='utf-8') as f:
   lines  = f.read().split('\n')
@@ -533,13 +535,13 @@ fileName = 'nlp4_news2.txt'
 with open(fileName, mode='w', encoding='utf-8') as fw:
   fw.write('\n'.join(results))
   print('저장완료')
+```
 
-"""<br>
+<br>
 
 ## 👉 유사도 계산
 
-"""
-
+```py
 fileName = 'nlp4_news2.txt'
 genObj = word2vec.LineSentence(fileName)  #LineSentence object
 print(genObj)
@@ -554,15 +556,16 @@ print()
 
 #필요없는 메모리 해제
 model.init_sims(replace=True)
+```
 
-"""<br>
+
+<br>
 
 ### 🌼 작성된 모델을 파일로 저장  
 
 학습이 끝난 모델을 저장해 사용한다. 매번 학습을 실행하지 않아도 된다.
 
-"""
-
+```py
 try:
     model.save('nlp4_model.model')
 except Exception as e:
@@ -573,8 +576,9 @@ print(model.wv.most_similar(positive=['세대']))
 print(model.wv.most_similar(positive=['세대'], topn=5))
 print(model.wv.most_similar(negative=['세대']))
 print(model.wv.most_similar(positive=['세대','처우']))
+```
 
-"""<br>
+<br>
 
 # 📝 **Scikit-Learn**
 
@@ -590,13 +594,15 @@ print(model.wv.most_similar(positive=['세대','처우']))
 refereces:  
 https://wiserloner.tistory.com/917   
 https://datascienceschool.net/03%20machine%20learning/03.01.03%20Scikit-Learn%EC%9D%98%20%EB%AC%B8%EC%84%9C%20%EC%A0%84%EC%B2%98%EB%A6%AC%20%EA%B8%B0%EB%8A%A5.html
-"""
 
+
+```py
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
 content = ['How to format my hard disk,','Hard disk format format problems.']
+```
 
-"""<br>
+<br>
 
 ## 👉 **CountVectorizer**
 
@@ -623,9 +629,10 @@ content = ['How to format my hard disk,','Hard disk format format problems.']
 '이런', '그', '을' 등의 조사, 지시대명사 같은 데이터는 높은 빈도수를 가지게 되지만, 실질적으론 의미가 없는 데이터이기 때문에 양질의 결과를 얻지 못할 수도 있다.  
 딥러닝의 경우라면 해당 노드에서 들어오는 가중치를 낮춤으로써 결과에 대한 영향력을 스스로 줄이기 때문에 그냥 사용해도 상관없다.  
 
-그러나 성능 향상을 위해 근본적인 해결이 필요했고 대안으로 나온 것이 TfidfVectorizer 방식이다.  
-"""
+그러나 성능 향상을 위해 근본적인 해결이 필요했고 대안으로 나온 것이 `TfidfVectorizer` 방식이다.  
 
+
+```py
 count_vec = CountVectorizer(analyzer='word', min_df=1)   #analyzer, tokenizer, token_pattern 등의 인수로 토큰생성기를 선택할 수 있다.
 #analyzer='word' : 단어단위로, analyzer='char' : 글자단위   min_df=1 : 빈도수가 1보다 적게 나오면 작업X
 print(count_vec)
@@ -639,8 +646,9 @@ print(count_vec.get_feature_names())   #기본적으로 특수문자, 한글자 
 print()
 
 print(aa.toarray())
+```
 
-"""<br>
+<br>
 
 ## 👉 **TfidfVectorizer**  
 
@@ -655,8 +663,7 @@ TF-IDF라는 값을 사용하여 CountVectorizer의 단점을 보완한 방법�
 
 즉, TF가 높고, DF가 낮을 수록 값이 커지는 것을 이용하여 분별력 있는 특징을 찾아내는 방법이다. 
 
-"""
-
+```py
 tfidf_vec = TfidfVectorizer(analyzer = "word", min_df =1)  #sklearn에서 제공하는 Tfid 모듈의 벡터화 객체 생성
 print(tfidf_vec)
 print()
@@ -669,14 +676,15 @@ print(tfidf_vec.get_feature_names())  #사전 순으로 인덱싱되어 있다.
 print()
 
 print(bb.toarray())
+```
 
-"""<br>
+<br>
 
 # Vectorizer 예제
 
 ## 👉 대상 텍스트가 영어일 경우
-"""
 
+```py
 from sklearn.feature_extraction.text import CountVectorizer
 
 text_data = ["I'm Python programmer who Loves data analysis."]
@@ -691,8 +699,9 @@ print()
 
 text_data2 = ["I'm Python programmer"]
 print(count_vec.transform(text_data2))
+```
 
-"""<br>
+<br>
 
 ## 👉 대상 텍스트가 한글일 경우
 
@@ -700,8 +709,9 @@ print(count_vec.transform(text_data2))
 
 
 N gram은 단어사전 생성에 사용할 토큰의 크기를 결정한다. 모노그램(monogram)은 토큰 하나만 단어로 사용하며 바이그램(bigram)은 두 개의 연결된 토큰을 하나의 단어로 사용한다.
-"""
 
+
+```py
 text_data = ['나는 배가 고프다', '내일 점심 뭐 먹지', '내일 공부 해야겠다', '점심 먹고 공부 해야지']
 
 count_vec = CountVectorizer(analyzer='word', ngram_range=(1,1))
@@ -719,13 +729,14 @@ sentence = [text_data][0]
 print(count_vec.transform(sentence))
 print()
 print(count_vec.transform(sentence).toarray())
+```
 
-"""<br>
+<br>
 
 ### TfidfVectorizer
 
-"""
 
+```py
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 text_data = ['나는 배가 고프다', '내일 점심 뭐 먹지', '내일 공부 해야겠다', '점심 먹고 공부 해야지']
@@ -746,14 +757,15 @@ print()
 print(tfidf_vec.transform(sentence))
 print()
 print(tfidf_vec.transform(sentence).toarray())
+```
 
-"""<br>
+<br>
 
 # 🎬 네이버 영화 감상평으로 영화들 간 유사성 확인
 
 ## 감상평 스크래핑
-"""
 
+```py
 from bs4 import BeautifulSoup
 import requests
 from konlpy.tag import Okt
@@ -809,12 +821,13 @@ balsin = movie_scrap('https://movie.naver.com/movie/point/af/list.nhn?st=mcode&s
 
 movies = [midnight, lucca, whitechicks, killer, balsin]
 #print(movies)
+```
 
-"""<br>
+<br>
 
 ## 필터링 하기
-"""
 
+```py
 words_basket = []
 okt = Okt()
 
@@ -860,13 +873,13 @@ def word_separate(movies):
 #영화별로 5개의 문자열로 통합
 word_list = word_separate(movies)
 print(word_list)
+```
 
-"""<br>
+<br>
 
 ## 단어 벡터화 - CountVectorizer
 
-"""
-
+```py
 count = CountVectorizer(min_df=2)
 count_dtm = count.fit_transform(word_list).toarray()
 print(count_dtm)
@@ -877,30 +890,32 @@ cou_dtm_df = pd.DataFrame(count_dtm, columns=count.get_feature_names(),
 
 pd.set_option('display.max_columns', 500)
 print(cou_dtm_df)
+```
 
-"""<br>
+<br>
 
 ## 단어 벡터화 - TfidfVectorizer
 
 단어의 빈도수 뿐 아니라 단어의 중요성까지 고려한 방법
 
 
-"""
-
+```py
 idf_maker = TfidfVectorizer(min_df=2)
 tfidf_dtm = idf_maker.fit_transform(word_list).toarray()
 
 tfidf_dtm_df = pd.DataFrame(tfidf_dtm, columns=count.get_feature_names(),
                           index=['midnight', 'lucca', 'whitechicks', 'killer','balsin'])
 print(tfidf_dtm_df)
+```
 
-"""<br>
+<br>
 
 ## 각 영화 간 유사성 확인
 
 코사인 유사도를 이용한다. 
-"""
 
+
+```py
 #수식 사용
 def cosin_func(doc1, doc2):
   bunja = sum(doc1 * doc2)
@@ -919,8 +934,14 @@ print()
 df = pd.DataFrame(res, columns=['midnight', 'lucca', 'whitechicks', 'killer','balsin'], 
                   index=['midnight', 'lucca', 'whitechicks', 'killer','balsin'])
 print(df)
-
-"""
+```
 값이 높을 수록 유사성이 높다고 할 수 있다.  
-"""
 
+<br>
+
+references:  
+https://cafe.daum.net/flowlife/RUrO/65  
+https://velog.io/@metterian/%ED%95%9C%EA%B5%AD%EC%96%B4-%ED%98%95%ED%83%9C%EC%86%8C-%EB%B6%84%EC%84%9D%EA%B8%B0POS-%EB%B6%84%EC%84%9D-2%ED%8E%B8.-%ED%92%88%EC%82%AC-%ED%83%9C%EA%B7%B8-%EC%A0%95%EB%A6%AC  
+http://incredible.ai/nlp/2016/12/28/NLP/
+
+<br>
