@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "welcome"
+title                    : "개발이 재밌는 데이터 분석가"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "ha-been"
