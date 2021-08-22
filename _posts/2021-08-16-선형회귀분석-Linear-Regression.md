@@ -68,7 +68,7 @@ yhat = w * 2 + b
 print(yhat)
 ```
 
-<br>
+<br><br>
 
 # **선형회귀 Linear Regression**
 
@@ -80,7 +80,7 @@ print(yhat)
 
 기본 충족 조건 : 선형성, 잔차정규성, 독립성, 등분산성, 다중공선성
 
-<br>
+<br><br>
 
 # **단순선형회귀 분석 (Simple Linear Regression)**
 
@@ -498,7 +498,7 @@ result3 = smf.ols(formula = my_formula , data = iris).fit()
 print(result3.summary())
 ```
 
-<br>
+<br><br>
 
 # **다중선형회귀 (Multiple Linear Regression)**  
 
@@ -734,7 +734,7 @@ pred2 = lm_mul.predict(x_new2)
 print('추정값:', pred2.values)
 ```
 
-<br>
+<br><br>
 
 # 🌞 회귀모델의 적절성을 판단하는 기준  
 
