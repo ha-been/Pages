@@ -105,7 +105,7 @@ author:
   avatar           : "/assets/images/profile.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "박식하기 그지없고 명석한 두뇌를 가진 수재요!"
   location         : "Somewhere"
-  email            : "im_babeenee@naver.com"
+  email            : "im_habeenee@naver.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
