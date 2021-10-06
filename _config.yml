@@ -101,9 +101,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "🐣"
+  name             : "LV🐥 <HABEEN>"
   avatar           : "/assets/images/profile.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  #bio              : "박식하기 그지없고 명석한 두뇌를 가진 수재요!"
+  #bio              : ""
   location         : "Somewhere"
   email            : "im_habeenee@naver.com"
   links:
@@ -121,7 +121,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/ha-been"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
